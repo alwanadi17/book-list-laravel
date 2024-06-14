@@ -12,10 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('genre');
-            $table->foreign('author_id')
-                ->references('id')
-                ->on('authors')
-                ->onDelete('cascade');
+            $table->unsignedBigInteger('author_id');
             $table->date('release');
             $table->text('description')->nullable();
             $table->string('isbn')->unique();
