@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('genre');
+            $table->date('release');
             $table->text('description')->nullable();
             $table->string('isbn')->unique();
             $table->timestamps();
