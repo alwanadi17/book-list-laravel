@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Books;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,52 +16,51 @@ class BooksTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('books')->insert([
+        $books = [
             [
-                'title' => 'To Kill a Mockingbird',
-                'description' => "A classic novel that deals with the issues of racial injustice and the moral courage to stand up for what's right.",
-                'isbn' => '978-0446310789',
-                'published_at' => '1960-07-11',
-                'price' => 9.99,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'title' => 'Harry Potter and the Philosopher\'s Stone',
+                'genre' => 'Fantasy',
+                'author_id' => 1,
+                'release' => '1997-06-26',
+                'description' => 'This is the first book in the Harry Potter series.',
+                'isbn' => '0747532747',
             ],
             [
-                'title' => 'The Great Gatsby',
-                'description' => "A captivating story about the lavish and tragic life of a mysterious millionaire in the 1920s.",
-                'isbn' => '978-0743273565',
-                'published_at' => '1925-04-10',
-                'price' => 7.99,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'title' => 'The Lord of the Rings',
+                'genre' => 'Fantasy',
+                'author_id' => 2,
+                'release' => '1954-07-29',
+                'description' => 'This is the first book in the Lord of the Rings series.',
+                'isbn' => '0261103601',
             ],
             [
-                'title' => 'Pride and Prejudice',
-                'description' => "A classic novel that explores the themes of love, marriage, and societal expectations in 19th-century England.",
-                'isbn' => '978-0141439513',
-                'published_at' => '1813-01-28',
-                'price' => 6.99,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'title' => 'A Game of Thrones',
+                'genre' => 'Fantasy',
+                'author_id' => 3,
+                'release' => '1996-08-01',
+                'description' => 'This is the first book in the A Song of Ice and Fire series.',
+                'isbn' => '0553574979',
             ],
             [
-                'title' => 'The Hunger Games',
-                'description' => "A gripping dystopian novel about a young girl's fight for survival in a future society.",
-                'isbn' => '978-0439023481',
-                'published_at' => '2008-09-14',
-                'price' => 12.99,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'title' => 'American Gods',
+                'genre' => 'Fantasy',
+                'author_id' => 4,
+                'release' => '2001-03-21',
+                'description' => 'This is a novel by Neil Gaiman.',
+                'isbn' => '0060530928',
             ],
             [
-                'title' => 'The Da Vinci Code',
-                'description' => "A thrilling mystery novel that explores the hidden secrets of the Catholic Church and the Holy Grail.",
-                'isbn' => '978-0385504201',
-                'published_at' => '2003-03-18',
-                'price' => 10.99,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'title' => 'The Shining',
+                'genre' => 'Horror',
+                'author_id' => 5,
+                'release' => '1977-01-28',
+                'description' => 'This is a horror novel by Stephen King.',
+                'isbn' => '0345409641',
             ],
-        ]);
+        ];
+
+        foreach ($books as $book) {
+            Books::create($book);
+        }
     }
 }
