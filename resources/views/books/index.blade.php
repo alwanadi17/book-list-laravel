@@ -11,7 +11,10 @@
         <thead>
             <tr>
                 <th>&nbsp;</th>
-                <th>Book</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Description</th>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +37,7 @@
                 <td>{{ $book->title }}</td>
                 <td>{{ $book->author->name }}</td>
                 <td>{{ $book->genre }}</td>
+                <td>{{ $book->description }}</td>
             </tr>
             @empty
             <tr>

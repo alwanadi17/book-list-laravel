@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Authors;
 use App\Models\Books;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class BooksController extends Controller
     {
         //
         $books = Books::paginate(10);
-        return view('books.index', ['books' => $books]);
+        $authors = Authors::all();
+        return view('books.index', ['books' => $books, 'authors' => $authors]);
     }
 
     /**
@@ -27,7 +29,8 @@ class BooksController extends Controller
     public function create()
     {
         //
-        return view('books.create');
+        $authors = Authors::all();
+        return view('books.create', ['authors' => $authors]);
     }
 
     /**
@@ -42,10 +45,10 @@ class BooksController extends Controller
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'genre' => ['required', 'string', 'max:255'],
-            'author_id' => ['required', 'unsignedBigInteger'],
+            'author_id' => ['required', 'integer'],
             'release' => ['required', 'date'],
-            'description' => ['nullable', 'text'],
-            'isbn' => ['required', 'string', 'unique'],
+            'description' => ['nullable', 'string'],
+            'isbn' => ['required', 'string', 'unique:books,isbn'],
         ]);
         $data = $request->all();
         Books::create($data);
@@ -72,7 +75,7 @@ class BooksController extends Controller
     public function edit($id)
     {
         //
-        return view('books.edit', ['books' => Books::find($id)]);
+        return view('books.edit', ['item' => Books::find($id), 'authors' => Authors::all()]);
     }
 
     /**
@@ -88,10 +91,10 @@ class BooksController extends Controller
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'genre' => ['required', 'string', 'max:255'],
-            'author_id' => ['required', 'unsignedBigInteger'],
+            'author_id' => ['required', 'integer'],
             'release' => ['required', 'date'],
-            'description' => ['nullable', 'text'],
-            'isbn' => ['required', 'string', 'unique'],
+            'description' => ['nullable', 'string'],
+            'isbn' => ['required', 'string'],
         ]);
         $data = $request->all();
         $books = Books::find($id);
